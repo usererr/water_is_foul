@@ -54,111 +54,208 @@
 
         default_layer {
             label = "Base";
-/* QWERTY
+/* ISRT
  *
- * ,----------------------------------.                      ,----------------------------------.
- * |   Q  |   W  |   E  |   R  |   T  |                      |   Y  |   U  |   I  |   O  |   P  |
- * |------+------+------+------+------|                      |------+------+------+------+------|
- * |   A  |   S  |   D  |   F  |   G  |                      |   H  |   J  |   K  |   L  |   ;  |
- * |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
- * |   Z  |   X  |   C  |   V  |   B  |  |  2  |    |  3  |  |   N  |   M  |   ,  |   .  |   /  |
- * `----------------------------------'  `-----'    `-----'  `----------------------------------'
- *          ,-----.   ,--------------------.            ,--------------------.   ,-----.
- *          |  1  |   | DEL | SPACE | TAB  |            |  ESC  | BS | ENTER |   |  4  |
- *          `-----'   `--------------------'            `--------------------'   `-----'
+ *                                      ,----------------------------------.                      ,----------------------------------.
+ *                                      |   Y  |   C  |   L  |   M  |   K  |                      |   Z  |   F  |   U  |   ,  |   '  |
+ *                                      |------+------+------+------+------|                      |------+------+------+------+------|
+ *                                      |   I  |   S  |   R  |   T  |   G  |                      |   P  |   N  |   E  |   A  |   O  |
+ *                                      |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                                      |   Q  |   V  |   W  |   D  |   J  |  | HOME|    |LC(0)|  |   B  |   H  |   /  |   .  |   X  |
+ *                                      `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                               ,-----.   ,--------------------.            ,--------------------.   ,--------------.
+ *                                               | END |   | TAB | SPACE | DOWN |            |  UP   | BS | ENTER |   |  PLAY_PAUSE  |
+ *                                               `-----'   `--------------------'            `--------------------'   `--------------'
  */
             bindings = <
-                &kp Y         &kp C           &kp L            &kp M           &kp K    &kp Z   &kp F           &kp U           &kp COMMA       &kp SQT
-                &hm LGUI I    &hm LALT S      &hm LCTRL R      &hm LSHFT T     &kp G    &kp P   &hm RSHFT N     &hm RCTRL E     &hm LALT A      &hm LGUI O
-                &hm NAV_L Q   &kp V           &kp W            &kp D           &kp J    &kp B   &kp H           &kp FSLH        &kp DOT         &kp X
-                &kp N1        &lt SYM_L TAB   &lt NUM_L SPACE  &lt NAV_L TAB   &kp N2   &kp N3  &lt OTH_L BKSP  &lt NAV_L RET   &lt OTH_L BKSP  &kp N4
+                &kp Y         &kp C           &kp L            &kp M           &kp K      &kp Z      &kp F           &kp U           &kp COMMA       &kp SQT
+                &hm LGUI I    &hm LALT S      &hm LCTRL R      &hm LSHFT T     &kp G      &kp P      &hm RSHFT N     &hm RCTRL E     &hm LALT A      &hm LGUI O
+                &hm NAV_L Q   &kp V           &kp W            &kp D           &kp J      &kp B      &kp H           &kp FSLH        &kp DOT         &kp X
+                &kp END       &lt NAV_L TAB   &lt NUM_L SPACE  &lt FUN_L DOWN  &kp HOME   &kp LC(0)  &lt OTH_L UP    &lt SYM_L RET   &lt MED_L BKSP  &kp C_PLAY_PAUSE
             >;
 
             sensor-bindings = <
-                &inc_dec_kp PAGE_DOWN PAGE_UP
-                &inc_dec_kp C_VOL_DN C_VOL_UP
-                &inc_dec_kp DOWN UP
-                &inc_dec_kp LEFT RIGHT
+                &inc_dec_kp RIGHT LEFT
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp LC(+) LC(-)
+                &inc_dec_kp C_VOL_UP C_VOL_DN
             >;
         };
         nav_layer {
                 label = "Nav";
+
+/* NAV
+ *
+ *                                  ,----------------------------------.                      ,----------------------------------.
+ *                                  |   *  |   *  |   *  |   *  |   *  |                      |   *  |   *  |   *  |   *  |   *  |
+ *                                  |------+------+------+------+------|                      |------+------+------+------+------|
+ *                                  | LEFT | DOWN |  UP  |RIGHT |   *  |                      |   *  | LEFT | DOWN |  UP  |RIGHT |
+ *                                  |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                                  | HOME |PG_DN |PG_UP | END  |   *  |  | *   |    | END |  |   *  | HOME |PG_DN |PG_UP | END  |
+ *                                  `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                           ,-----.   ,--------------------.            ,--------------------.   ,---------.
+ *                                           | DEL |   |   *  |   *  | LEFT |            | RIGHT |  *  |  *   |   |  ENTER  |
+ *                                           `-----'   `--------------------'            `--------------------'   `---------'
+ */
+
             bindings = <
-                &trans  &trans  &trans  &trans  &trans       &trans     &trans    &trans    &trans   &trans
-                &kp LARW        &kp DARW      &kp UARW        &kp RARW         &trans       &trans    &kp LARW         &kp DARW       &kp UARW        &kp RARW
-                &kp HOME        &kp PG_DN     &kp PG_UP       &kp END          &trans       &trans    &kp HOME         &kp PG_DN      &kp PG_UP       &kp END
-                &kp N1          &trans        &trans       &trans        &kp N2       &kp N3     &trans         &trans      &trans          &kp N4
+                &trans          &trans        &trans       &trans        &trans       &trans      &trans         &trans        &trans          &trans
+                &kp LARW        &kp DARW      &kp UARW     &kp RARW      &trans       &trans      &kp LARW       &kp DARW      &kp UARW        &kp RARW
+                &kp HOME        &kp PG_DN     &kp PG_UP    &kp END       &trans       &trans      &kp HOME       &kp PG_DN     &kp PG_UP       &kp END
+                &kp DEL         &trans        &trans       &kp LEFT      &trans       &kp END     &kp RIGHT      &trans        &trans          &kp ENTER
             >;
             sensor-bindings = <
-                &inc_dec_kp PAGE_DOWN PAGE_UP
-                &inc_dec_kp C_VOL_DN C_VOL_UP
-                &inc_dec_kp DOWN UP
-                &inc_dec_kp LEFT RIGHT
-            >;        };
+                &inc_dec_kp RIGHT LEFT
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp UP DOWN
+            >;
+        };
         other_layer {
             label = "Other";
+
+/* OTH
+ *
+ *                                 ,----------------------------------.                      ,----------------------------------.
+ *                                 |EP_ON |   *  |   *  |   *  |   *  |                      |   *  |   *  |   *  |   *  |BT_CLR|
+ *                                 |------+------+------+------+------|                      |------+------+------+------+------|
+ *                                 |EP_OFF|   *  |   *  |   *  |   *  |                      |   *  |   *  |   *  |   *  |   *  |
+ *                                 |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                                 |EP_TOG|   *  |   *  |   *  |   *  |  |  *  |    |  *  |  |  BT0 |  BT1 |  BT2 |  BT3 | BT4  |
+ *                                 `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                          ,-----.   ,--------------------.            ,--------------------.   ,-----.
+ *                                          |  *  |   |   *  |   *  | LEFT |            | RIGHT |  *  |  *   |   |  *  |
+ *                                          `-----'   `--------------------'            `--------------------'   `-----'
+ */
+
             bindings = <
-                &ext_power EP_ON      &trans     &trans      &trans          &trans       &trans       &trans         &trans       &trans       &bt BT_CLR
-                &ext_power EP_OFF     &trans     &trans      &trans          &trans       &trans           &trans         &trans       &trans       &trans
-                &ext_power EP_TOG     &trans     &trans      &trans          &trans       &bt BT_SEL 0     &bt BT_SEL 1   &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
-                &kp N1     &trans      &trans          &trans   &kp N2       &kp N3    &trans           &trans         &trans
+                &ext_power EP_ON      &trans     &trans     &trans      &trans       &trans           &trans         &trans        &trans        &bt BT_CLR
+                &ext_power EP_OFF     &trans     &trans     &trans      &trans       &trans           &trans         &trans        &trans        &trans
+                &ext_power EP_TOG     &trans     &trans     &trans      &trans       &bt BT_SEL 0     &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4
+                &trans                &trans     &trans     &kp LEFT    &trans       &trans           &kp RIGHT      &trans        &trans        &trans       
+            >;
+            sensor-bindings = <
+                &inc_dec_kp RIGHT LEFT
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp UP DOWN
             >;
         };
         num_layer {
             label = "Num";
+
+/* NUM
+ *
+ *                                  ,----------------------------------.                      ,----------------------------------.
+ *                                  | ESC  |  DEL |   (  |   )  |   :  |                      |   `  |   7  |   8  |   9  |   -  |
+ *                                  |------+------+------+------+------|                      |------+------+------+------+------|
+ *                                  |  <   |   >  |   [  |   ]  |   ~  |                      |   /  |   4  |   5  |   6  |   ;  |
+ *                                  |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                                  |  /   |   \  |   {  |   }  | PIPE |  |  *  |    |  *  |  |   0  |   1  |   2  |   3  |   =  |
+ *                                  `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                           ,-----.   ,--------------------.            ,--------------------.   ,-----.
+ *                                           |  *  |   |   *  |   *  |  *   |            |   *   |  0  |  *   |   |  *  |
+ *                                           `-----'   `--------------------'            `--------------------'   `-----'
+ */
+
             bindings = <
                 &kp ESC   &kp DEL    &kp LPAR      &kp RPAR         &kp COLON     &kp GRAVE        &kp N7         &kp N8      &kp N9     &kp MINUS
                 &kp LT    &kp GT     &kp LBKT      &hm LSHFT RBKT   &kp TILDE     &kp FSLH         &hm RSHFT N4   &kp N5      &kp N6     &kp SEMI
                 &kp FSLH  &kp BSLH   &kp LBRC      &kp RBRC         &kp PIPE      &kp N0           &kp N1         &kp N2      &kp N3     &kp EQUAL
-                &kp N1    &trans         &trans           &trans    &kp N2       &kp N3    &trans         &kp N0        &trans  &kp N4
+                &trans    &trans     &trans        &trans           &trans        &trans           &trans         &kp N0      &trans     &trans
             >;
             sensor-bindings = <
-                &inc_dec_kp PAGE_DOWN PAGE_UP
-                &inc_dec_kp C_VOL_DN C_VOL_UP
-                &inc_dec_kp DOWN UP
-                &inc_dec_kp LEFT RIGHT
+                &inc_dec_kp RIGHT LEFT
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp UP DOWN
             >;
         };
 
         sym_layer {
             label = "Sym";
+
+/* SYM
+ *
+ *                                  ,----------------------------------.                      ,----------------------------------.
+ *                                  | ESC  |  DEL |   (  |   )  |   :  |                      |   '  |   &  |   *  |   `  |   _  |
+ *                                  |------+------+------+------+------|                      |------+------+------+------+------|
+ *                                  |  <   |   >  |   [  |   ]  |   ~  |                      |   "  |   $  |   %  |   ^  |   :  |
+ *                                  |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                                  |  /   |   \  |   {  |   }  | PIPE |  | *   |    | END |  |   `  |   !  |   @  |   #  |   +  |
+ *                                  `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                           ,-----.   ,--------------------.            ,--------------------.   ,-----.
+ *                                           |  *  |   |   *  |   *  | LEFT |            | RIGHT |  0  |  *   |   |  *  |
+ *                                           `-----'   `--------------------'            `--------------------'   `-----'
+ */
+
             bindings = <
-                &kp ESC   &kp DEL     &kp LPAR      &kp RPAR         &kp COLON        &kp SQT   &kp AMPS  &kp STAR   &kp GRAVE  &kp UNDER
-                &kp LT    &kp GT      &kp LBKT      &hm LSHFT RBKT   &kp TILDE        &kp DQT   &kp DLLR  &kp PRCNT  &kp CARET  &kp COLON
-                &kp FSLH  &kp BSLH    &kp LBRC      &kp RBRC         &kp PIPE         &kp GRAVE &kp EXCL  &kp AT     &kp HASH   &kp PLUS
-                &kp N1    &trans      &trans        &trans    &kp N2       &kp N3     &trans    &trans        &trans  &kp N4
+                &kp ESC   &kp DEL     &kp LPAR      &kp RPAR         &kp COLON        &kp SQT    &kp AMPS    &kp STAR   &kp GRAVE  &kp UNDER
+                &kp LT    &kp GT      &kp LBKT      &hm LSHFT RBKT   &kp TILDE        &kp DQT    &kp DLLR    &kp PRCNT  &kp CARET  &kp COLON
+                &kp FSLH  &kp BSLH    &kp LBRC      &kp RBRC         &kp PIPE         &kp GRAVE  &kp EXCL    &kp AT     &kp HASH   &kp PLUS
+                &trans    &trans      &trans        &kp LEFT         &trans           &trans     &kp RIGHT   &kp N0     &trans     &trans
             >;
             sensor-bindings = <
-                &inc_dec_kp PAGE_DOWN PAGE_UP
-                &inc_dec_kp C_VOL_DN C_VOL_UP
-                &inc_dec_kp DOWN UP
-                &inc_dec_kp LEFT RIGHT
+                &inc_dec_kp RIGHT LEFT
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp PAGE_UP PAGE_DOWN
+                &inc_dec_kp UP DOWN
             >;
         };
 
         media_layer {
             label = "Media";
+
+/* MED
+ *
+ *                             ,----------------------------------.                      ,----------------------------------.
+ *                             |  *   |   *  |   *  |   *  |   *  |                      |   *  |   *  |   *  |   *  |   *  |
+ *                             |------+------+------+------+------|                      |------+------+------+------+------|
+ *                             |  *   |   *  |   *  |   *  |   *  |                      |   *  | PREV | VOL- | VOL+ | NEXT |
+ *                             |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                             |  *   |   *  |   *  |   *  |   *  |  |MUTE |    |MUTE |  |   *  |   *  |   *  |   *  |   *  |
+ *                             `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                      ,-----.   ,--------------------.            ,--------------------.   ,-----.
+ *                                      | PP  |   |   *  |   *  | LEFT |            | RIGHT |  *  |  *   |   | PP  |
+ *                                      `-----'   `--------------------'            `--------------------'   `-----'
+ */
+
             bindings = <
-                &trans	   &trans     &trans      &trans          &trans       &trans           &trans         &trans       &trans       &trans
-                &trans     &trans     &trans      &trans          &trans       &trans           &kp C_PREV     &kp C_VOL_DN &kp C_VOL_UP &kp C_NEXT
-                &trans     &trans     &trans      &trans          &trans       &trans           &trans         &trans       &trans       &trans
-                &kp N1     &trans       &trans          &trans    &kp N2       &kp N3   &kp C_STOP       &kp C_PLAY_PAUSE        &trans  &kp N4
+                &trans	          &trans     &trans     &trans       &trans       &trans         &trans         &trans          &trans        &trans
+                &trans            &trans     &trans     &trans       &trans       &trans         &kp C_PREV     &kp C_VOL_DN    &kp C_VOL_UP  &kp C_NEXT
+                &trans            &trans     &trans     &trans       &trans       &trans         &trans         &trans          &trans        &trans
+                &kp C_PLAY_PAUSE  &trans     &trans     &kp LEFT     &kp C_MUTE   &kp C_MUTE     &kp RIGHT      &trans          &trans        &kp C_PLAY_PAUSE
             >;
             sensor-bindings = <
-                &inc_dec_kp PAGE_DOWN PAGE_UP
-                &inc_dec_kp C_VOL_DN C_VOL_UP
-                &inc_dec_kp DOWN UP
-                &inc_dec_kp LEFT RIGHT
+                &inc_dec_kp C_NEXT C_PREV
+                &inc_dec_kp C_NEXT C_PREV
+                &inc_dec_kp C_VOL_UP C_VOL_DN
+                &inc_dec_kp C_VOL_UP C_VOL_DN
             >;
         };
 
         fun_layer {
             label = "Fun";
+
+/* FUN
+ *
+ *                             ,----------------------------------.                      ,----------------------------------.
+ *                             |  *   |   *  |   *  |   *  |   *  |                      |   *  |  F7  |  F8  |  F9  |   *  |
+ *                             |------+------+------+------+------|                      |------+------+------+------+------|
+ *                             |  *   |   *  |   *  |   *  |   *  |                      |   *  |  F4  |  F5  |  F6  |   *  |
+ *                             |------+------+------+------+------|  ,-----.    ,-----.  |------+------+------+------+------|
+ *                             |  *   |   *  |   *  |   *  |   *  |  |  *  |    |  *  |  |   *  |  F1  |  F2  |  F3  |   *  |
+ *                             `----------------------------------'  `-----'    `-----'  `----------------------------------'
+ *                                      ,-----.   ,--------------------.            ,--------------------.   ,-----.
+ *                                      |  *  |   |   *  |   *  | LEFT |            | RIGHT |  *  |  *   |   |  *  |
+ *                                      `-----'   `--------------------'            `--------------------'   `-----'
+ */
+
             bindings = <
-                &kp F12     &kp F7     &kp F8      &kp F9     &kp PSCRN         &trans          &trans         &trans      &trans     &trans
-                &kp F11     &kp F4     &kp F5      &kp F6     &kp SLCK          &trans          &trans         &trans      &trans     &trans
-                &kp F10     &kp F1     &kp F2      &kp F3     &kp PAUSE_BREAK   &trans          &trans         &trans      &trans     &trans
-                &kp N1      &trans       &none      &none      &kp N2       &kp N3       &trans          &trans          &trans  &kp N4
+                &trans      &trans       &trans      &trans     &trans      &trans       &kp F7         &kp F8      &kp F9     &trans
+                &trans      &trans       &trans      &trans     &trans      &trans       &kp F4         &kp F5      &kp F6     &trans
+                &trans      &trans       &trans      &trans     &trans      &trans       &kp F1         &kp F2      &kp F3     &trans
+                &trans      &trans       &trans      &kp LEFT   &trans      &trans       &kp RIGHT      &trans      &trans     &trans
             >;
             sensor-bindings = <
                 &inc_dec_kp PAGE_DOWN PAGE_UP
